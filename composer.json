@@ -1,9 +1,9 @@
 {
-    "name": "fuzion/omnipay-shell", //UPDATE
+    "name": "fuzion/omnipay-shell",
     "type": "library",
-    "description": "shell support for Omnipay payment processing library",//UPDATE
+    "description": "shell support for Omnipay payment processing library",
     "keywords": [
-        "shell",//UPDATE
+        "shell",
         "gateway",
         "merchant",
         "omnipay",
@@ -11,16 +11,16 @@
         "payment",
         "purchase"
     ],
-    "homepage": "https://github.com/eileenmcnaughton/omnipay-shell",//UPDATE
+    "homepage": "https://github.com/eileenmcnaughton/omnipay-shell",
     "license": "MIT",
     "authors": [
         {
-            "name": "Eileen McNaughton",//UPDATE
-            "email": "eileen@fuzion.co.nz"//UPDATE
+            "name": "Eileen McNaughton",
+            "email": "eileen@fuzion.co.nz"
         }
     ],
     "autoload": {
-        "psr-4": { "Omnipay\\Shell\\" : "src/" }//UPDATE
+        "psr-4": { "Omnipay\\Shell\\" : "src/" }
     },
     "require": {
         "omnipay/common": "~2.0"
