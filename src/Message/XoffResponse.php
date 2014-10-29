@@ -12,28 +12,50 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 class XoffResponse extends AbstractResponse implements RedirectResponseInterface
 {
   /**
-   * endpoint is the remote url - should be provided by the processor
+   * endpoint is the remote url - should be provided by the processor.
+   * we are using github as a filler
+   *
    * @var string
    */
     public $endpoint = 'https://github.com';
 
-    public function __construct(RequestInterface $request, $data)
+    protected $redirectUrl;
+
+
+    public function __construct(RequestInterface $request, $data, $redirectUrl)
     {
         $this->request = $request;
         $this->data = $data;
-      //  $this->redirectUrl = $redirectUrl;
+        $this->redirectUrl = $redirectUrl;
     }
 
+    /**
+     * Has the call to the processor succeeded?
+     * When we need to redirect the browser we return false as the transaction is not yet complete
+     *
+     * @return bool
+     */
     public function isSuccessful()
     {
         return false;
     }
 
+    /**
+     * Should the user's browser be redirected?
+     *
+     * @return bool
+     */
     public function isRedirect()
     {
         return true;
     }
 
+    /**
+     * Transparent redirect is the mode whereby a form is presented to the user that POSTs to the payment
+     * processor site directly. If this returns true the site will need to provide a form for this
+     *
+     * @return bool
+     */
     public function isTransparentRedirect()
     {
         return false;
@@ -44,6 +66,10 @@ class XoffResponse extends AbstractResponse implements RedirectResponseInterface
         return $this->endpoint .'?' . http_build_query($this->data);
     }
 
+    /**
+     * Should the browser redirect using GET or POST
+     * @return string
+     */
     public function getRedirectMethod()
     {
         return 'GET';

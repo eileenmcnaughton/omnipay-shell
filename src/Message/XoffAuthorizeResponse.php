@@ -8,50 +8,6 @@ use Omnipay\Common\Message\RequestInterface;
 /**
  * Complete Authorize Response
  */
-class XoffAuthorizeResponse extends AbstractResponse
+class XoffAuthorizeResponse extends XoffResponse
 {
-    protected $redirectUrl;
-
-    public function __construct(RequestInterface $request, $data, $redirectUrl)
-    {
-        $this->request = $request;
-        $this->data = $data;
-        $this->redirectUrl = $redirectUrl;
-    }
-
-    public function isSuccessful()
-    {
-        return false;
-    }
-
-    public function isRedirect()
-    {
-        return true;
-    }
-
-    public function getRedirectUrl()
-    {
-        return $this->redirectUrl;
-    }
-
-    public function getRedirectMethod()
-    {
-        return 'GET';
-    }
-
-    public function getRedirectData()
-    {
-        return $this->getData();
-    }
-
-    /**
-     * Transparent redirect is the mode whereby a form is presented to the user that POSTs to the payment
-     * processor site directly. If this returns true the site will need to provide a form for this
-     *
-     * @return bool
-     */
-    public function isTransparentRedirect()
-    {
-        return false;
-    }
 }
