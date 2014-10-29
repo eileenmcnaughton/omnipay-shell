@@ -6,7 +6,7 @@ use Omnipay\Common\AbstractGateway;
 /**
  * Sample Gateway using a redirect method
  */
-class RedirectGateway extends AbstractGateway
+class XoffGateway extends AbstractGateway
 {
 
   /**
@@ -15,7 +15,7 @@ class RedirectGateway extends AbstractGateway
    */
     public function getName()
     {
-        return 'ShellRedirect';
+        return 'ShellXoff';
     }
 
   /**
@@ -35,41 +35,41 @@ class RedirectGateway extends AbstractGateway
     /**
      *
      * @param array $parameters
-     * @return \Omnipay\Shell\Message\AuthorizeRequest
+     * @return \Omnipay\Shell\Message\XoffAuthorizeRequest
      */
     public function authorize(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Shell\Message\AuthorizeRequest', $parameters);
+        return $this->createRequest('\Omnipay\Shell\Message\XoffAuthorizeRequest', $parameters);
     }
 
     /**
      *
      * @param array $parameters
-     * @return \Omnipay\Shell\Message\CaptureRequest
+     * @return \Omnipay\Shell\Message\XoffCaptureRequest
      */
     public function capture(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Shell\Message\CaptureRequest', $parameters);
+        return $this->createRequest('\Omnipay\Shell\Message\XoffCaptureRequest', $parameters);
     }
 
     /**
      *
      * @param array $parameters
-     * @return \Omnipay\Shell\Message\PurchaseRequest
+     * @return \Omnipay\Shell\Message\XoffPurchaseRequest
      */
     public function purchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Shell\Message\PurchaseRequest', $parameters);
+        return $this->createRequest('\Omnipay\Shell\Message\XoffPurchaseRequest', $parameters);
     }
 
     /**
      *
      * @param array $parameters
-     * @return \Omnipay\Shell\Message\CompletePurchaseRequest
+     * @return \Omnipay\Shell\Message\XoffCompletePurchaseRequest
      */
     public function completePurchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Shell\Message\CompletePurchaseRequest', $parameters);
+        return $this->createRequest('\Omnipay\Shell\Message\XoffCompletePurchaseRequest', $parameters);
     }
 
     /**
@@ -78,27 +78,7 @@ class RedirectGateway extends AbstractGateway
      */
     public function completeAuthorize(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Shell\Message\CompleteAuthorizeRequest', $parameters);
-    }
-
-    /**
-     *
-     * @param array $parameters
-     * @return \Omnipay\Shell\Message\CreateCardRequest
-     */
-    public function createCard(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\Shell\Message\CreateCardRequest', $parameters);
-    }
-
-    /**
-     *
-     * @param array $parameters
-     * @return \Omnipay\Shell\Message\UpdateCardRequest
-     */
-    public function updateCard(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\Shell\Message\UpdateCardRequest', $parameters);
+        return $this->createRequest('\Omnipay\Shell\Message\XoffCompleteAuthorizeRequest', $parameters);
     }
 
     public function getUsername()
@@ -110,7 +90,6 @@ class RedirectGateway extends AbstractGateway
     {
         return $this->setParameter('username', $value);
     }
-
     public function getPassword()
     {
         return $this->getParameter('password');
@@ -119,15 +98,5 @@ class RedirectGateway extends AbstractGateway
     public function setPassword($value)
     {
         return $this->setParameter('password', $value);
-    }
-
-    public function getTransactionType()
-    {
-        return $this->getParameter('transactionType');
-    }
-
-    public function setTransactionType($value)
-    {
-        return $this->setParameter('transactionType', $value);
     }
 }

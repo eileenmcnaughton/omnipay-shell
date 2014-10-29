@@ -3,9 +3,9 @@
 namespace Omnipay\Shell;
 
 use Omnipay\Tests\GatewayTestCase;
-use Omnipay\Shell\SystemGateway;
+use Omnipay\Shell\XoffGateway;
 
-class SystemGatewayTest extends GatewayTestCase
+class XoffGatewayTest extends GatewayTestCase
 {
   /**
    * @var Omnipay/Shell/SystemGateway
@@ -16,7 +16,7 @@ class SystemGatewayTest extends GatewayTestCase
     {
         parent::setUp();
 
-        $this->gateway = new SystemGateway($this->getHttpClient(), $this->getHttpRequest());
+        $this->gateway = new XoffGateway($this->getHttpClient(), $this->getHttpRequest());
     }
 
     public function testPurchase()
@@ -29,20 +29,20 @@ class SystemGatewayTest extends GatewayTestCase
       $response->getRedirectData();
 
       $request = $this->gateway->purchase(array('amount' => '10.00'));
-      $this->assertInstanceOf('Omnipay\Shell\Message\PurchaseRequest', $request);
+      $this->assertInstanceOf('Omnipay\Shell\Message\XoffPurchaseRequest', $request);
       $this->assertSame('10.00', $request->getAmount());
       $this->assertFalse($response->isSuccessful());
       $this->assertTrue($response->isRedirect());
       $this->assertNotEmpty($response->getRedirectUrl());
 
-      $this->assertSame('https://preprod-tpeweb.Shell.com/cgi/MYchoix_pagepaiement.cgi?', $response->getRedirectUrl());
+      $this->assertSame('https://github.com', $response->getRedirectUrl());
     }
 
     public function testCompletePurchase()
     {
         $request = $this->gateway->completePurchase(array('amount' => '10.00'));
 
-        $this->assertInstanceOf('Omnipay\Shell\Message\CompletePurchaseRequest', $request);
+        $this->assertInstanceOf('Omnipay\Shell\Message\XoffCompletePurchaseRequest', $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 
@@ -53,7 +53,7 @@ class SystemGatewayTest extends GatewayTestCase
         'lastName' => 'The second',
       )))->send();
 
-      $this->assertInstanceOf('Omnipay\Shell\Message\Response', $request);
+      $this->assertInstanceOf('Omnipay\Shell\Message\XoffAuthorizeResponse', $request);
       $this->assertFalse($request->isTransparentRedirect());
     }
 }
