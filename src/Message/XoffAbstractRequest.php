@@ -2,11 +2,32 @@
 
 namespace Omnipay\Shell\Message;
 
+use Omnipay\Common\Exception\InvalidRequestException;
+
 /**
  * Abstract Request
  */
 abstract class XoffAbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
+    public function getData()
+    {
+        foreach ($this->getRequiredCoreFields() as $field) {
+            $this->validate($field);
+        }
+        $this->validateCardFields();
+        return $this->getBaseData() + $this->getTransactionData();
+    }
+
+    public function validateCardFields () {
+        $card = $this->getCard();
+        foreach ($this->getRequiredCardFields() as $field) {
+            $fn = 'get' . ucfirst($field);
+            if (empty($card->$fn())) {
+                throw new InvalidRequestException("The $field parameter is required");
+            }
+        }
+    }
+
     public function getUsername()
     {
         return $this->getParameter('username');

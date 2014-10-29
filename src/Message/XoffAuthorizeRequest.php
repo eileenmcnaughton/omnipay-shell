@@ -10,29 +10,38 @@ use Omnipay\Shell\Message\AbstractRequest;
 class XoffAuthorizeRequest extends XoffAbstractRequest
 {
 
-    public function getData()
-    {
-        $this->validate('currency', 'amount');
-        return $this->getBaseData() + $this->getTransactionData();
-    }
-
+    /**
+     * sendData function. In this case, where the browser is to be directly it constructs and returns a response object
+     * @param mixed $data
+     * @return \Omnipay\Common\Message\ResponseInterface|XoffAuthorizeResponse
+     */
     public function sendData($data)
     {
         return $this->response = new XoffAuthorizeResponse($this, $data, $this->getEndpoint());
     }
 
-    protected function createResponse($data)
-    {
-        return $this->response = new XoffResponse($this, $data);
-    }
-
-    public function getRequiredFields()
+    /**
+     * Get an array of the required fields for the core gateway
+     * @return array
+     */
+    public function getRequiredCoreFields()
     {
         return array
         (
             'amount',
-            'email',
             'currency',
+        );
+    }
+
+    /**
+     * get an array of the required 'card' fields (personal information fields)
+     * @return array
+     */
+    public function getRequiredCardFields()
+    {
+        return array
+        (
+            'email',
         );
     }
 
@@ -60,25 +69,12 @@ class XoffAuthorizeRequest extends XoffAbstractRequest
     }
 
     /**
-     * @return string
-     */
-    public function getUniqueID()
-    {
-        return uniqid();
-    }
-
-    /**
      * this is the url provided by your payment processor. Github is standing in for the real url here
     * @return string
     */
     public function getEndpoint()
     {
         return 'https://github.com';
-    }
-
-    public function getPaymentMethod()
-    {
-        return 'card';
     }
 
     public function getTransactionType()

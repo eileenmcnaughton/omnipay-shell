@@ -9,6 +9,6 @@ class XoffCaptureRequest extends XoffAuthorizeRequest
 {
     public function getTransactionType()
     {
-        return 'Purchase';
+        return 'capture';
     }
 }

@@ -19,14 +19,11 @@ class XoffResponse extends AbstractResponse implements RedirectResponseInterface
    */
     public $endpoint = 'https://github.com';
 
-    protected $redirectUrl;
 
-
-    public function __construct(RequestInterface $request, $data, $redirectUrl)
+    public function __construct(RequestInterface $request, $data)
     {
         $this->request = $request;
         $this->data = $data;
-        $this->redirectUrl = $redirectUrl;
     }
 
     /**

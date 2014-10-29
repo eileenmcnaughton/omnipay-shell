@@ -85,3 +85,50 @@ Normally the prefix would reflect the vendor's naming convention (e.g Standard &
 
 Note that Omnipay does not think of processors as having on-site & off-site distinctions. The point is to provide a model for 2 types in one package and to demonstrate the
 functions that are specific to processors that use callbacks - ie IPNs/ Silent Posts / other http or api calls.
+
+1. Set up your payment classes. Generally you should start with the 'AuthorizeRequest', 'PurchaseRequest' & CaptureRequest classes. It is likely there
+will be very little difference between the 3 and in the shell extension the PurchaseRequest & CaptureRequest extend the AuthorizeRequest, declaring only a different
+transaction type. Start by looking at the following functions 
+
+  - sendData - is the browser is to be redirected the function should look like
+      ```
+      function sendData($data) {
+            return $this->response = new XoffAuthorizeResponse($this, $data, $this->getEndpoint());
+      }
+      ```
+
+      If the server is to communicate directly with the other site then the sendData function encapsulates this 
+      interaction
+
+      ```
+      function sendData($data) {
+           $httpResponse = $this->httpClient->post($this->getEndpoint(), null, $data)->send();
+           return $this->response = new AIMResponse($this, $httpResponse->getBody());
+      }
+      ```
+
+
+2. Declaring & validating required fields.
+
+There are 2 types of required fields 'card' fields and 'core' fields - the difference is that the core fields are about your site and the transaction
+and card fields are about the person. For a list look at https://github.com/thephpleague/omnipay
+
+The shell extension uses functions to declare the required fields and the getData function in the shell 
+extension validates these. (It is hoped these functions would also be accessible to the calling app to do pre-validation
+
+    public function getRequiredCoreFields()
+    {
+        return array
+        (
+            'amount',
+            'currency',
+        );
+    }
+
+    public function getRequiredCardFields()
+    {
+        return array
+        (
+            'email',
+        );
+    }

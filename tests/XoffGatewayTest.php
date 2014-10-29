@@ -4,6 +4,8 @@ namespace Omnipay\Shell;
 
 use Omnipay\Tests\GatewayTestCase;
 use Omnipay\Shell\XoffGateway;
+use Omnipay\Common\Exception\InvalidRequestException;
+use Omnipay\Common\CreditCard;
 
 class XoffGatewayTest extends GatewayTestCase
 {
@@ -12,6 +14,11 @@ class XoffGatewayTest extends GatewayTestCase
    */
     public $gateway;
 
+    /**
+     * @var Omnipay\Common\CreditCard
+     */
+    public $card;
+
     public function setUp()
     {
         parent::setUp();
@@ -19,34 +26,58 @@ class XoffGatewayTest extends GatewayTestCase
         $this->gateway = new XoffGateway($this->getHttpClient(), $this->getHttpRequest());
         $this->gateway->setUsername('Billy');
         $this->gateway->setPassword('really_secure');
+        $this->card = new CreditCard(array('email' => 'mail@mail.com'));
     }
 
-public function testPurchase()
-{
-    $response = $this->gateway->purchase(array('amount' => '10.00', 'currency' => 978))->send();
-    $this->assertInstanceOf('Omnipay\Shell\Message\XoffAuthorizeResponse', $response);
-    $this->assertFalse($response->isSuccessful());
-    $this->assertTrue($response->isRedirect());
-    $this->assertNotEmpty($response->getRedirectUrl());
-    $this->assertSame('https://github.com?username=Billy&password=really_secure&type=sale&PBX_TOTAL=10.00', $response->getRedirectUrl());
-}
+    public function testPurchase()
+    {
+        $response = $this->gateway->purchase(array('amount' => '10.00', 'currency' => 978, 'card' => $this->card))->send();
+        $this->assertInstanceOf('Omnipay\Shell\Message\XoffAuthorizeResponse', $response);
+        $this->assertFalse($response->isSuccessful());
+        $this->assertTrue($response->isRedirect());
+        $this->assertNotEmpty($response->getRedirectUrl());
+        $this->assertSame('https://github.com?username=Billy&password=really_secure&type=sale&PBX_TOTAL=10.00', $response->getRedirectUrl());
+        $this->assertFalse($response->isTransparentRedirect());
+    }
+
+    public function testAuthorize()
+    {
+        $response = $this->gateway->authorize(array('amount' => '10.00', 'currency' => 978, 'card' => $this->card))->send();
+        $this->assertInstanceOf('Omnipay\Shell\Message\XoffAuthorizeResponse', $response);
+        $this->assertFalse($response->isSuccessful());
+        $this->assertTrue($response->isRedirect());
+        $this->assertNotEmpty($response->getRedirectUrl());
+        $this->assertSame('https://github.com?username=Billy&password=really_secure&type=Authorize&PBX_TOTAL=10.00', $response->getRedirectUrl());
+        $this->assertFalse($response->isTransparentRedirect());
+    }
+
+    public function testCapture()
+    {
+        $response = $this->gateway->capture(array('amount' => '10.00', 'currency' => 978, 'card' => $this->card))->send();
+        $this->assertInstanceOf('Omnipay\Shell\Message\XoffAuthorizeResponse', $response);
+        $this->assertFalse($response->isSuccessful());
+        $this->assertTrue($response->isRedirect());
+        $this->assertNotEmpty($response->getRedirectUrl());
+        $this->assertSame('https://github.com?username=Billy&password=really_secure&type=capture&PBX_TOTAL=10.00', $response->getRedirectUrl());
+        $this->assertFalse($response->isTransparentRedirect());
+    }
 
     public function testCompletePurchase()
     {
-        $request = $this->gateway->completePurchase(array('amount' => '10.00'));
+        $request = $this->gateway->completePurchase(array('amount' => '10.00',));
 
         $this->assertInstanceOf('Omnipay\Shell\Message\XoffCompletePurchaseRequest', $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 
-    public function testCompletePurchaseSend()
+    /**
+     * @expectedException Omnipay\Common\Exception\InvalidRequestException
+     */
+    public function testCompletePurchaseSendMissingEmail()
     {
-      $request = $this->gateway->purchase(array('amount' => '10.00', 'currency' => 'USD', 'card' => array(
-        'firstName' => 'Pokemon',
-        'lastName' => 'The second',
-      )))->send();
-
-      $this->assertInstanceOf('Omnipay\Shell\Message\XoffAuthorizeResponse', $request);
-      $this->assertFalse($request->isTransparentRedirect());
+        $this->gateway->purchase(array('amount' => '10.00', 'currency' => 'USD', 'card' => array(
+            'firstName' => 'Pokemon',
+            'lastName' => 'The second',
+        )))->send();
     }
 }
