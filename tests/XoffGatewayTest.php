@@ -15,7 +15,7 @@ class XoffGatewayTest extends GatewayTestCase
     public $gateway;
 
     /**
-     * @var Omnipay\Common\CreditCard
+     * @var CreditCard
      */
     public $card;
 
@@ -36,7 +36,7 @@ class XoffGatewayTest extends GatewayTestCase
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertNotEmpty($response->getRedirectUrl());
-        $this->assertSame('https://github.com?username=Billy&password=really_secure&type=sale&PBX_TOTAL=10.00', $response->getRedirectUrl());
+        $this->assertSame('https://github.com?username=Billy&password=really_secure&type=sale&total=10.00', $response->getRedirectUrl());
         $this->assertFalse($response->isTransparentRedirect());
     }
 
@@ -47,7 +47,7 @@ class XoffGatewayTest extends GatewayTestCase
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertNotEmpty($response->getRedirectUrl());
-        $this->assertSame('https://github.com?username=Billy&password=really_secure&type=Authorize&PBX_TOTAL=10.00', $response->getRedirectUrl());
+        $this->assertSame('https://github.com?username=Billy&password=really_secure&type=Authorize&total=10.00', $response->getRedirectUrl());
         $this->assertFalse($response->isTransparentRedirect());
     }
 
@@ -58,7 +58,7 @@ class XoffGatewayTest extends GatewayTestCase
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertNotEmpty($response->getRedirectUrl());
-        $this->assertSame('https://github.com?username=Billy&password=really_secure&type=capture&PBX_TOTAL=10.00', $response->getRedirectUrl());
+        $this->assertSame('https://github.com?username=Billy&password=really_secure&type=capture&total=10.00', $response->getRedirectUrl());
         $this->assertFalse($response->isTransparentRedirect());
     }
 
