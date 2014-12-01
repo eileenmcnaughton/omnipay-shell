@@ -18,7 +18,8 @@ abstract class XoffAbstractRequest extends \Omnipay\Common\Message\AbstractReque
         return $this->getBaseData() + $this->getTransactionData();
     }
 
-    public function validateCardFields () {
+    public function validateCardFields()
+    {
         $card = $this->getCard();
         foreach ($this->getRequiredCardFields() as $field) {
             $fn = 'get' . ucfirst($field);
