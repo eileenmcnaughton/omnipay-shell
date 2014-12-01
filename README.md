@@ -115,6 +115,7 @@ and card fields are about the person. For a list look at https://github.com/thep
 
 The shell extension uses functions to declare the required fields and the getData function in the shell 
 extension validates these. (It is hoped these functions would also be accessible to the calling app to do pre-validation
+Note that you are referencing the normalised Omnipay fields here not the ones defined by the processor
 
     public function getRequiredCoreFields()
     {
@@ -132,3 +133,11 @@ extension validates these. (It is hoped these functions would also be accessible
             'email',
         );
     }
+
+3. getTransactionData()
+
+  This is where you declare the mappings between the omnipay normalised fields and the payment gateway's field
+  names as a simple array.
+
+  - to get the amount you can use $this->getAmount() for an amount like '1.00' or getAmountInteger() for an amount like 100
+  (for the same amount)

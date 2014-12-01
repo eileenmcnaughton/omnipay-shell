@@ -45,13 +45,20 @@ class XoffAuthorizeRequest extends XoffAbstractRequest
         );
     }
 
+    /**
+     * Map Omnipay normalised fields to gateway defined fields. If the order the fields are
+     * passed to the gateway matters you should order them correctly here
+     *
+     * @return array
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
+     */
     public function getTransactionData()
     {
         return array
         (
-            'PBX_CMD' => $this->getTransactionId(),
-            'PBX_TOTAL' => $this->getAmount(),
-            'PBX_DEVISE' => $this->getCurrencyNumeric(),
+            'site_ref' => $this->getTransactionId(),
+            'total' => $this->getAmount(),
+            'curr' => $this->getCurrencyNumeric(),
         );
     }
 
