@@ -23,7 +23,8 @@ abstract class XoffAbstractRequest extends \Omnipay\Common\Message\AbstractReque
         $card = $this->getCard();
         foreach ($this->getRequiredCardFields() as $field) {
             $fn = 'get' . ucfirst($field);
-            if (empty($card->$fn())) {
+            $result = $card->$fn();
+            if (empty($result)) {
                 throw new InvalidRequestException("The $field parameter is required");
             }
         }
