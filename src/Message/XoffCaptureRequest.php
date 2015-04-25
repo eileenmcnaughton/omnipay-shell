@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\Shell\Message;
+namespace Omnipay\paypal_standard\Message;
 
 /**
  * Capture Request

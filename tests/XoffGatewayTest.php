@@ -1,16 +1,16 @@
 <?php
 
-namespace Omnipay\Shell;
+namespace Omnipay\paypal_standard;
 
 use Omnipay\Tests\GatewayTestCase;
-use Omnipay\Shell\XoffGateway;
+use Omnipay\paypal_standard\XoffGateway;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\CreditCard;
 
 class XoffGatewayTest extends GatewayTestCase
 {
   /**
-   * @var Omnipay/Shell/SystemGateway
+   * @var Omnipay/paypal_standard/SystemGateway
    */
     public $gateway;
 
@@ -32,7 +32,7 @@ class XoffGatewayTest extends GatewayTestCase
     public function testPurchase()
     {
         $response = $this->gateway->purchase(array('amount' => '10.00', 'currency' => 978, 'card' => $this->card))->send();
-        $this->assertInstanceOf('Omnipay\Shell\Message\XoffAuthorizeResponse', $response);
+        $this->assertInstanceOf('Omnipay\paypal_standard\Message\XoffAuthorizeResponse', $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertNotEmpty($response->getRedirectUrl());
@@ -43,7 +43,7 @@ class XoffGatewayTest extends GatewayTestCase
     public function testAuthorize()
     {
         $response = $this->gateway->authorize(array('amount' => '10.00', 'currency' => 978, 'card' => $this->card))->send();
-        $this->assertInstanceOf('Omnipay\Shell\Message\XoffAuthorizeResponse', $response);
+        $this->assertInstanceOf('Omnipay\paypal_standard\Message\XoffAuthorizeResponse', $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertNotEmpty($response->getRedirectUrl());
@@ -54,7 +54,7 @@ class XoffGatewayTest extends GatewayTestCase
     public function testCapture()
     {
         $response = $this->gateway->capture(array('amount' => '10.00', 'currency' => 978, 'card' => $this->card))->send();
-        $this->assertInstanceOf('Omnipay\Shell\Message\XoffAuthorizeResponse', $response);
+        $this->assertInstanceOf('Omnipay\paypal_standard\Message\XoffAuthorizeResponse', $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertNotEmpty($response->getRedirectUrl());
@@ -66,7 +66,7 @@ class XoffGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->completePurchase(array('amount' => '10.00',));
 
-        $this->assertInstanceOf('Omnipay\Shell\Message\XoffCompletePurchaseRequest', $request);
+        $this->assertInstanceOf('Omnipay\paypal_standard\Message\XoffCompletePurchaseRequest', $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 
