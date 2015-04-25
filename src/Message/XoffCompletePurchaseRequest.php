@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\paypal_standard\Message;
+namespace Omnipay\paypalstandard\Message;
 
 /**
  * Authorize Request

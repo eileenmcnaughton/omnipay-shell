@@ -1,5 +1,5 @@
 <?php
-namespace Omnipay\paypal_standard; //Make sure you update the namespace to reflect your plugin
+namespace Omnipay\paypalstandard; //Make sure you update the namespace to reflect your plugin
 
 use Omnipay\Common\AbstractGateway;
 
