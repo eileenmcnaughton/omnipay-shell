@@ -15,7 +15,7 @@ class XoffGateway extends AbstractGateway
    */
     public function getName()
     {
-        return 'paypal_standardXoff';
+        return 'paypalstandardXoff';
     }
 
   /**
@@ -35,50 +35,50 @@ class XoffGateway extends AbstractGateway
     /**
      *
      * @param array $parameters
-     * @return \Omnipay\paypal_standard\Message\XoffAuthorizeRequest
+     * @return \Omnipay\paypalstandard\Message\XoffAuthorizeRequest
      */
     public function authorize(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\paypal_standard\Message\XoffAuthorizeRequest', $parameters);
+        return $this->createRequest('\Omnipay\paypalstandard\Message\XoffAuthorizeRequest', $parameters);
     }
 
     /**
      *
      * @param array $parameters
-     * @return \Omnipay\paypal_standard\Message\XoffCaptureRequest
+     * @return \Omnipay\paypalstandard\Message\XoffCaptureRequest
      */
     public function capture(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\paypal_standard\Message\XoffCaptureRequest', $parameters);
+        return $this->createRequest('\Omnipay\paypalstandard\Message\XoffCaptureRequest', $parameters);
     }
 
     /**
      *
      * @param array $parameters
-     * @return \Omnipay\paypal_standard\Message\XoffPurchaseRequest
+     * @return \Omnipay\paypalstandard\Message\XoffPurchaseRequest
      */
     public function purchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\paypal_standard\Message\XoffPurchaseRequest', $parameters);
+        return $this->createRequest('\Omnipay\paypalstandard\Message\XoffPurchaseRequest', $parameters);
     }
 
     /**
      *
      * @param array $parameters
-     * @return \Omnipay\paypal_standard\Message\XoffCompletePurchaseRequest
+     * @return \Omnipay\paypalstandard\Message\XoffCompletePurchaseRequest
      */
     public function completePurchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\paypal_standard\Message\XoffCompletePurchaseRequest', $parameters);
+        return $this->createRequest('\Omnipay\paypalstandard\Message\XoffCompletePurchaseRequest', $parameters);
     }
 
     /**
      * @param array $parameters
-     * @return \Omnipay\paypal_standard\Message\CompleteAuthorizeRequest
+     * @return \Omnipay\paypalstandard\Message\CompleteAuthorizeRequest
      */
     public function completeAuthorize(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\paypal_standard\Message\XoffCompleteAuthorizeRequest', $parameters);
+        return $this->createRequest('\Omnipay\paypalstandard\Message\XoffCompleteAuthorizeRequest', $parameters);
     }
 
     public function getUsername()
