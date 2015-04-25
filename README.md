@@ -36,7 +36,7 @@ To create an Omnipay plug from this
 ```
 
 and ensure the namespace in all files in the src directory have that namespace (e.g replace Omnipay\Shell with your namespace).
-In general doing a find and replace in your src directory on the word Shell should work
+In general doing a find and replace in your src directory on the word Shell should work. Also update - i.e. replace Omnipay\Shell with your namespace in: tests/XoffGatewayTest.php
 
 6. commit your extension to git & push to a repo on github (am working on the assumption of github)
 
