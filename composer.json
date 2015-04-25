@@ -1,7 +1,7 @@
 {
-    "name": "fuzion/omnipay-shell",
+    "name": "KarinG/paypal_standard",
     "type": "library",
-    "description": "shell support for Omnipay payment processing library",
+    "description": "PayPal Standard support for Omnipay payment processing library",
     "keywords": [
         "shell",
         "gateway",
@@ -11,16 +11,16 @@
         "payment",
         "purchase"
     ],
-    "homepage": "https://github.com/eileenmcnaughton/omnipay-shell",
+    "homepage": "",
     "license": "MIT",
     "authors": [
         {
-            "name": "Eileen McNaughton",
-            "email": "eileen@fuzion.co.nz"
+            "name": "KarinG",
+            "email": "frontdesk@semper-it.com"
         }
     ],
     "autoload": {
-        "psr-4": { "Omnipay\\Shell\\" : "src/" }
+        "psr-4": { "Omnipay\\paypal_standard\\" : "src/" }
     },
     "require": {
         "omnipay/common": "~2.0"
