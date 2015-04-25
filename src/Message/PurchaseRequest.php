@@ -1,11 +1,11 @@
 <?php
 
-namespace Omnipay\paypalstandard\Message;
+namespace civicrm\paypalstandard\Message;
 
 /**
  * Purchase Request
  */
-class XoffPurchaseRequest extends XoffAuthorizeRequest
+class PurchaseRequest extends AuthorizeRequest
 {
     public function getTransactionType()
     {

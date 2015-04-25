@@ -1,15 +1,15 @@
 <?php
 
-namespace Omnipay\paypalstandard\Message;
+namespace civicrm\paypalstandard\Message;
 
 /**
  * Authorize Request
  */
-class XoffCompletePurchaseRequest extends XoffAbstractRequest
+class CompletePurchaseRequest extends AbstractRequest
 {
     public function sendData($data)
     {
-        return $this->response = new XoffCompletePurchaseResponse($this, $data);
+        return $this->response = new CompletePurchaseResponse($this, $data);
     }
 
     public function getData()

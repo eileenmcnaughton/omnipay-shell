@@ -1,12 +1,12 @@
 <?php
 
-namespace Omnipay\paypalstandard\Message;
+namespace civicrm\paypalstandard\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 
 /**
  * Authorize.Net SIM Complete Authorize Response
  */
-class XoffCompletePurchaseResponse extends XoffCompleteAuthorizeRequest
+class CompletePurchaseResponse extends CompleteAuthorizeRequest
 {
 }

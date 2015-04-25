@@ -1,23 +1,23 @@
 <?php
 
-namespace Omnipay\paypalstandard\Message;
+namespace civicrm\paypalstandard\Message;
 
-use Omnipay\paypalstandard\Message\AbstractRequest;
+use civicrm\paypalstandard\Message\AbstractRequest;
 
 /**
  * Paybox System Authorize Request
  */
-class XoffAuthorizeRequest extends XoffAbstractRequest
+class AuthorizeRequest extends AbstractRequest
 {
 
     /**
      * sendData function. In this case, where the browser is to be directly it constructs and returns a response object
      * @param mixed $data
-     * @return \Omnipay\Common\Message\ResponseInterface|XoffAuthorizeResponse
+     * @return \Omnipay\Common\Message\ResponseInterface|AuthorizeResponse
      */
     public function sendData($data)
     {
-        return $this->response = new XoffAuthorizeResponse($this, $data, $this->getEndpoint());
+        return $this->response = new AuthorizeResponse($this, $data, $this->getEndpoint());
     }
 
     /**

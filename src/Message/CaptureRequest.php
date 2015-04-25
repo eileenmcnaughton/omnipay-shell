@@ -1,11 +1,11 @@
 <?php
 
-namespace Omnipay\paypalstandard\Message;
+namespace civicrm\paypalstandard\Message;
 
 /**
  * Capture Request
  */
-class XoffCaptureRequest extends XoffAuthorizeRequest
+class CaptureRequest extends AuthorizeRequest
 {
     public function getTransactionType()
     {

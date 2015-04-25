@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\paypalstandard\Message;
+namespace civicrm\paypalstandard\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
@@ -9,7 +9,7 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 /**
  * Stripe Response
  */
-class XoffResponse extends AbstractResponse implements RedirectResponseInterface
+class Response extends AbstractResponse implements RedirectResponseInterface
 {
   /**
    * endpoint is the remote url - should be provided by the processor.

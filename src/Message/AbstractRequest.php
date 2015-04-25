@@ -1,13 +1,13 @@
 <?php
 
-namespace Omnipay\paypalstandard\Message;
+namespace civicrm\paypalstandard\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 
 /**
  * Abstract Request
  */
-abstract class XoffAbstractRequest extends \Omnipay\Common\Message\AbstractRequest
+abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
     public function getData()
     {

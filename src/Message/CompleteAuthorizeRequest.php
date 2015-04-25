@@ -1,8 +1,8 @@
 <?php
 
-namespace Omnipay\paypalstandard\Message;
+namespace civicrm\paypalstandard\Message;
 
-use Omnipay\paypalstandard\Message\AbstractRequest;
+use civicrm\paypalstandard\Message\AbstractRequest;
 
 /**
  * Sample Complete Authorize Response
@@ -12,11 +12,11 @@ use Omnipay\paypalstandard\Message\AbstractRequest;
  * The data passed to these requests is most often the content of the POST and this class is responsible for
  * interpreting it
  */
-class XoffCompleteAuthorizeRequest extends XoffAbstractRequest
+class CompleteAuthorizeRequest extends AbstractRequest
 {
     public function sendData($data)
     {
-        return $this->response = new XoffCompleteAuthorizeResponse($this, $data);
+        return $this->response = new CompleteAuthorizeResponse($this, $data);
     }
 
     public function getData()

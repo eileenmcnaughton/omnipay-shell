@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\paypalstandard\Message;
+namespace civicrm\paypalstandard\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
@@ -8,6 +8,6 @@ use Omnipay\Common\Message\RequestInterface;
 /**
  * Complete Authorize Response
  */
-class XoffAuthorizeResponse extends XoffResponse
+class AuthorizeResponse extends Response
 {
 }

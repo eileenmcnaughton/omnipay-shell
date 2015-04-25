@@ -1,13 +1,13 @@
 <?php
 
-namespace Omnipay\paypalstandard\Message;
+namespace civicrm\paypalstandard\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 
 /**
  * Complete Authorize Response
  */
-class XoffCompleteAuthorizeResponse extends AbstractResponse
+class CompleteAuthorizeResponse extends AbstractResponse
 {
     /**
      * Check the parameters that have been passed in to determine if the response represents a successful transaction
