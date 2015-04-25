@@ -1,5 +1,5 @@
 <?php
-namespace civicrm\paypalstandard; //Make sure you update the namespace to reflect your plugin
+namespace omnipay\paypalstandard; //Make sure you update the namespace to reflect your plugin
 
 use Omnipay\Common\AbstractGateway;
 
@@ -35,50 +35,50 @@ class Gateway extends AbstractGateway
     /**
      *
      * @param array $parameters
-     * @return \civicrm\paypalstandard\Message\AuthorizeRequest
+     * @return \omnipay\paypalstandard\Message\AuthorizeRequest
      */
     public function authorize(array $parameters = array())
     {
-        return $this->createRequest('\civicrm\paypalstandard\Message\AuthorizeRequest', $parameters);
+        return $this->createRequest('\omnipay\paypalstandard\Message\AuthorizeRequest', $parameters);
     }
 
     /**
      *
      * @param array $parameters
-     * @return \civicrm\paypalstandard\Message\CaptureRequest
+     * @return \omnipay\paypalstandard\Message\CaptureRequest
      */
     public function capture(array $parameters = array())
     {
-        return $this->createRequest('\civicrm\paypalstandard\Message\CaptureRequest', $parameters);
+        return $this->createRequest('\omnipay\paypalstandard\Message\CaptureRequest', $parameters);
     }
 
     /**
      *
      * @param array $parameters
-     * @return \civicrm\paypalstandard\Message\PurchaseRequest
+     * @return \omnipay\paypalstandard\Message\PurchaseRequest
      */
     public function purchase(array $parameters = array())
     {
-        return $this->createRequest('\civicrm\paypalstandard\Message\PurchaseRequest', $parameters);
+        return $this->createRequest('\omnipay\paypalstandard\Message\PurchaseRequest', $parameters);
     }
 
     /**
      *
      * @param array $parameters
-     * @return \civicrm\paypalstandard\Message\CompletePurchaseRequest
+     * @return \omnipay\paypalstandard\Message\CompletePurchaseRequest
      */
     public function completePurchase(array $parameters = array())
     {
-        return $this->createRequest('\civicrm\paypalstandard\Message\CompletePurchaseRequest', $parameters);
+        return $this->createRequest('\omnipay\paypalstandard\Message\CompletePurchaseRequest', $parameters);
     }
 
     /**
      * @param array $parameters
-     * @return \civicrm\paypalstandard\Message\CompleteAuthorizeRequest
+     * @return \omnipay\paypalstandard\Message\CompleteAuthorizeRequest
      */
     public function completeAuthorize(array $parameters = array())
     {
-        return $this->createRequest('\civicrm\paypalstandard\Message\CompleteAuthorizeRequest', $parameters);
+        return $this->createRequest('\omnipay\paypalstandard\Message\CompleteAuthorizeRequest', $parameters);
     }
 
     public function getUsername()

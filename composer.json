@@ -1,5 +1,5 @@
 {
-    "name": "civicrm/paypalstandard",
+    "name": "civicrm/omnipay-paypalstandard",
     "type": "library",
     "description": "PayPal Standard support for Omnipay payment processing library",
     "keywords": [
@@ -20,7 +20,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "civicrm\\paypalstandard\\" : "src/" }
+        "psr-4": { "Omnipay\\paypalstandard\\" : "src/" }
     },
     "require": {
         "omnipay/common": "~2.0"

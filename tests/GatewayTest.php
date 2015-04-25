@@ -1,16 +1,16 @@
 <?php
 
-namespace civicrm\paypalstandard;
+namespace omnipay\paypalstandard;
 
 use Omnipay\Tests\GatewayTestCase;
-use civicrm\paypalstandard\XoffGateway;
+use omnipay\paypalstandard\Gateway;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\CreditCard;
 
 class GatewayTest extends GatewayTestCase
 {
   /**
-   * @var civicrm/paypalstandard/SystemGateway
+   * @var omnipay/paypalstandard/SystemGateway
    */
     public $gateway;
 
@@ -32,7 +32,7 @@ class GatewayTest extends GatewayTestCase
     public function testPurchase()
     {
         $response = $this->gateway->purchase(array('amount' => '10.00', 'currency' => 978, 'card' => $this->card))->send();
-        $this->assertInstanceOf('civicrm\paypalstandard\Message\AuthorizeResponse', $response);
+        $this->assertInstanceOf('omnipay\paypalstandard\Message\AuthorizeResponse', $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertNotEmpty($response->getRedirectUrl());
@@ -43,7 +43,7 @@ class GatewayTest extends GatewayTestCase
     public function testAuthorize()
     {
         $response = $this->gateway->authorize(array('amount' => '10.00', 'currency' => 978, 'card' => $this->card))->send();
-        $this->assertInstanceOf('civicrm\paypalstandard\Message\AuthorizeResponse', $response);
+        $this->assertInstanceOf('omnipay\paypalstandard\Message\AuthorizeResponse', $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertNotEmpty($response->getRedirectUrl());
@@ -54,7 +54,7 @@ class GatewayTest extends GatewayTestCase
     public function testCapture()
     {
         $response = $this->gateway->capture(array('amount' => '10.00', 'currency' => 978, 'card' => $this->card))->send();
-        $this->assertInstanceOf('civicrm\paypalstandard\Message\AuthorizeResponse', $response);
+        $this->assertInstanceOf('omnipay\paypalstandard\Message\AuthorizeResponse', $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertNotEmpty($response->getRedirectUrl());
@@ -66,7 +66,7 @@ class GatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->completePurchase(array('amount' => '10.00',));
 
-        $this->assertInstanceOf('civicrm\paypalstandard\Message\CompletePurchaseRequest', $request);
+        $this->assertInstanceOf('omnipay\paypalstandard\Message\CompletePurchaseRequest', $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 
