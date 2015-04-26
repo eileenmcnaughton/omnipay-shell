@@ -1,8 +1,8 @@
 <?php
 
-namespace omnipay\paypalstandard\Message;
+namespace Omnipay\Paypalstandard\Message;
 
-use omnipay\paypalstandard\Message\AbstractRequest;
+use Omnipay\Paypalstandard\Message\AbstractRequest;
 
 /**
  * Paybox System Authorize Request
