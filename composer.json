@@ -11,7 +11,7 @@
         "payment",
         "purchase"
     ],
-    "homepage": "",
+    "homepage": "https://github.com/KarinG/omnipay-paypalstandard",
     "license": "MIT",
     "authors": [
         {
